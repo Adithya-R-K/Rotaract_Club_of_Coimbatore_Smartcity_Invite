@@ -97,9 +97,9 @@ export const dignitaries: Member[] = [
     icon: "crown"
   },
   {
-    name: "PHF. Rtn. Murtuza Raja",
+    name: "Rtn. PHF. Murtuza Raja",
     designation: "Guest of Honour",
-    subtitle: "Paul Harris Fellow · President, Rotary Club of Coimbatore Smart City",
+    subtitle: null,
     photo: null,
     bio: null,
     icon: "star"

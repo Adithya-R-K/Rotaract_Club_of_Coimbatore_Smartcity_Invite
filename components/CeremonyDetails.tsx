@@ -1,4 +1,4 @@
-import { CalendarDays, Clock, MapPin, Sparkles, Award } from "lucide-react";
+import { CalendarDays, Clock, MapPin, Award } from "lucide-react";
 import Section from "./Section";
 import AddToCalendar from "./AddToCalendar";
 import { event } from "@/config/event";
@@ -7,11 +7,6 @@ const details = [
   { icon: CalendarDays, label: "Date", value: event.dateDisplay },
   { icon: Clock, label: "Time", value: event.timeDisplay },
   { icon: MapPin, label: "Venue", value: event.venue.name },
-  {
-    icon: Sparkles,
-    label: "Theme",
-    value: `${event.theme.name} — ${event.theme.words.join(" · ")}`
-  },
   { icon: Award, label: "Installation year", value: event.rotaryYear }
 ];
 

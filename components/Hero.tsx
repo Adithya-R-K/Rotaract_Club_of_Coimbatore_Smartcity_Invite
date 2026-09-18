@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Starfield from "./Starfield";
 import SponsorHeader from "./SponsorHeader";
-import { club, event } from "@/config/event";
+import { event } from "@/config/event";
 
 export default function Hero() {
   return (
@@ -15,15 +15,6 @@ export default function Hero() {
       <Starfield density={70} />
       <div className="relative">
         <SponsorHeader />
-
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-6 font-body text-sm tracking-ceremonial text-aurora/80"
-        >
-          {club.name}
-        </motion.p>
 
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
