@@ -51,9 +51,19 @@ export default function OfficeBearers() {
             </div>
 
             <div className="mt-4 px-4 text-center">
-              <p className="font-body text-[11px] uppercase tracking-ceremonial text-parchment/60 min-h-[32px] flex items-center justify-center leading-snug">
-                {bearer.designation}
-              </p>
+              <div className="flex min-h-[32px] flex-col items-center justify-center gap-1">
+                {(Array.isArray(bearer.designation)
+                  ? bearer.designation
+                  : [bearer.designation]
+                ).map((role) => (
+                  <p
+                    key={role}
+                    className="font-body text-[11px] uppercase tracking-ceremonial text-parchment/60 leading-snug"
+                  >
+                    {role}
+                  </p>
+                ))}
+              </div>
               <p className="mt-2 font-display text-lg text-parchment">
                 {bearer.name}
               </p>

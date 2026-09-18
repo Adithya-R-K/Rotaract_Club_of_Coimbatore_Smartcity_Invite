@@ -22,7 +22,7 @@ export type Member = {
 
 export type OfficeBearer = {
   number: string; // "01", "02", ...
-  designation: string;
+  designation: string | string[]; // an array when one person holds multiple roles
   name: string;
   photo?: string;
 };
@@ -134,17 +134,15 @@ export const officeBearers: OfficeBearer[] = [
   { number: "07", designation: "Chair – All Avenues", name: "Rtr. Yoga R", photo: "/photos/yoga-r.jpg" },
   { number: "08", designation: "Director – Club Service", name: "Rtr. Harshita J", photo: "/photos/harshita-j.jpg" },
   { number: "09", designation: "Rotaract Learning Facilitator", name: "Rtr. Rishi Ragavan", photo: "/photos/rishi-ragavan.jpg" },
-  { number: "10", designation: "Director – Community Service", name: "Rtr. Athish Pranav A S", photo: "/photos/athish-pranav-a-s.jpg" },
-  { number: "11", designation: "Young Leader Contact", name: "Rtr. Athish Pranav A S", photo: "/photos/athish-pranav-a-s.jpg" },
-  { number: "12", designation: "Director – Professional Service", name: "Rtr. Arthi K", photo: "/photos/arthi-k.jpg" },
-  { number: "13", designation: "Director – International Service", name: "Rtr. Akassh G", photo: "/photos/akassh-g.jpg" },
-  { number: "14", designation: "Chair – District Priority Projects", name: "Rtr. Sreevanth", photo: "/photos/sreevanth.jpg" },
-  { number: "15", designation: "Chair – Club Membership", name: "Rtr. Harish Siddharth N", photo: "/photos/harish-siddharth-n.jpg" },
-  { number: "16", designation: "Chair – The Rotary Foundation", name: "Rtr. Akassh G", photo: "/photos/akassh-g.jpg" },
-  { number: "17", designation: "Chair – Public Image", name: "Rtr. Vikashine C", photo: "/photos/vikashine-c.jpg" },
-  { number: "18", designation: "Editor in Chief", name: "Rtr. Ridhu Varsini B", photo: "/photos/ridhu-varsini-b.jpg" },
-  { number: "19", designation: "Chair – Blood Donor Cell", name: "Rtr. Nishanth K", photo: "/photos/nishanth-k.jpg" },
-  { number: "20", designation: "Club Advisor", name: "Rtr. Vishruti Premanand", photo: "/photos/vishruti-premanand.jpg" }
+  { number: "10", designation: ["Director – Community Service", "Young Leader Contact"], name: "Rtr. Athish Pranav A S", photo: "/photos/athish-pranav-a-s.jpg" },
+  { number: "11", designation: "Director – Professional Service", name: "Rtr. Arthi K", photo: "/photos/arthi-k.jpg" },
+  { number: "12", designation: ["Director – International Service", "Chair – The Rotary Foundation"], name: "Rtr. Akassh G", photo: "/photos/akassh-g.jpg" },
+  { number: "13", designation: "Chair – District Priority Projects", name: "Rtr. Sreevanth", photo: "/photos/sreevanth.jpg" },
+  { number: "14", designation: "Chair – Club Membership", name: "Rtr. Harish Siddharth N", photo: "/photos/harish-siddharth-n.jpg" },
+  { number: "15", designation: "Chair – Public Image", name: "Rtr. Vikashine C", photo: "/photos/vikashine-c.jpg" },
+  { number: "16", designation: "Editor in Chief", name: "Rtr. Ridhu Varsini B", photo: "/photos/ridhu-varsini-b.jpg" },
+  { number: "17", designation: "Chair – Blood Donor Cell", name: "Rtr. Nishanth K", photo: "/photos/nishanth-k.jpg" },
+  { number: "18", designation: "Club Advisor", name: "Rtr. Vishruti Premanand", photo: "/photos/vishruti-premanand.jpg" }
 ];
 
 /**
