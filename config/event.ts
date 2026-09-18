@@ -41,14 +41,10 @@ export const club = {
 
 /**
  * Site-wide background photograph (the aurora / northern lights image).
- * Currently points at the source you shared. Hotlinking a third-party
- * CDN URL works once deployed (the visitor's browser fetches it directly),
- * but that URL can change or expire since it isn't yours. For a permanent,
- * reliable background: save the image to `public/images/aurora-bg.jpg` and
- * switch this to "/images/aurora-bg.jpg".
+ * Served from the local asset library so it never depends on a
+ * third-party CDN URL that could change or expire.
  */
-export const backgroundImage =
-  "https://content.skyscnr.com/m/179b3a18b66b76eb/original/Feb-25-B2-IN-6-Northern-Lights_1B_1.jpg?resize=1224:auto";
+export const backgroundImage = "/assets/dhruvam/backgrounds/aurora-sky.jpg";
 
 export const event = {
   eventName: "DHRUVAM",

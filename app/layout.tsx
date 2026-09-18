@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     images: [seo.ogImage]
   },
   icons: {
-    icon: "/favicon.ico"
+    icon: "/assets/dhruvam/logos/dhruvam-badge-256.png"
   }
 };
 
