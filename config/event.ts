@@ -57,9 +57,9 @@ export const event = {
 
   // ISO date + time used to derive all calendar / countdown logic.
   // Update this single value if the date changes.
-  dateISO: "2026-09-19T10:00:00+05:30",
+  dateISO: "2026-09-19T09:30:00+05:30",
   dateDisplay: "September 19, 2026",
-  timeDisplay: "10:00 AM",
+  timeDisplay: "9:30 AM",
   durationHours: 2.5, // used for calendar end-time; adjust if the run-of-show changes
 
   venue: {
@@ -97,7 +97,7 @@ export const dignitaries: Member[] = [
     icon: "crown"
   },
   {
-    name: "Rtn. Murtuza Raja",
+    name: "PHF. Rtn. Murtuza Raja",
     designation: "Guest of Honour",
     subtitle: "Paul Harris Fellow · President, Rotary Club of Coimbatore Smart City",
     photo: null,
