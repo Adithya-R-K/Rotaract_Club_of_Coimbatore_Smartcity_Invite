@@ -24,6 +24,7 @@ export type OfficeBearer = {
   number: string; // "01", "02", ...
   designation: string;
   name: string;
+  photo?: string;
 };
 
 export const siteUrl = {
@@ -40,14 +41,10 @@ export const club = {
 
 /**
  * Site-wide background photograph (the aurora / northern lights image).
- * Currently points at the source you shared. Hotlinking a third-party
- * CDN URL works once deployed (the visitor's browser fetches it directly),
- * but that URL can change or expire since it isn't yours. For a permanent,
- * reliable background: save the image to `public/images/aurora-bg.jpg` and
- * switch this to "/images/aurora-bg.jpg".
+ * Served from the local asset library so it never depends on a
+ * third-party CDN URL that could change or expire.
  */
-export const backgroundImage =
-  "https://content.skyscnr.com/m/179b3a18b66b76eb/original/Feb-25-B2-IN-6-Northern-Lights_1B_1.jpg?resize=1224:auto";
+export const backgroundImage = "/assets/dhruvam/backgrounds/aurora-sky.jpg";
 
 export const event = {
   eventName: "DHRUVAM",
@@ -128,26 +125,26 @@ export const dignitaries: Member[] = [
  */
 export const officeBearersTagline = "One by one. One summit. One team.";
 export const officeBearers: OfficeBearer[] = [
-  { number: "01", designation: "Immediate Past President", name: "Rtr. Akilesh D" },
-  { number: "02", designation: "President", name: "Rtr. Nirmal Kumar K" },
-  { number: "03", designation: "Secretary – Administration", name: "Rtr. Akshara K" },
-  { number: "04", designation: "Secretary – Communication", name: "Rtr. Umang Jaiswal" },
-  { number: "05", designation: "Vice President", name: "Rtr. Adithya R K" },
-  { number: "06", designation: "Treasurer", name: "Rtr. Kavin Kumar S" },
-  { number: "07", designation: "Chair – All Avenues", name: "Rtr. Yoga R" },
-  { number: "08", designation: "Director – Club Service", name: "Rtr. Harshita J" },
-  { number: "09", designation: "Rotaract Learning Facilitator", name: "Rtr. Rishi Ragavan" },
-  { number: "10", designation: "Director – Community Service", name: "Rtr. Athish Pranav A S" },
-  { number: "11", designation: "Young Leader Contact", name: "Rtr. Athish Pranav A S" },
-  { number: "12", designation: "Director – Professional Service", name: "Rtr. Arthi K" },
-  { number: "13", designation: "Director – International Service", name: "Rtr. Akassh G" },
-  { number: "14", designation: "Chair – District Priority Projects", name: "Rtr. Sreevanth" },
-  { number: "15", designation: "Chair – Club Membership", name: "Rtr. Harish Siddharth N" },
-  { number: "16", designation: "Chair – The Rotary Foundation", name: "Rtr. Akassh G" },
-  { number: "17", designation: "Chair – Public Image", name: "Rtr. Vikashine C" },
-  { number: "18", designation: "Editor in Chief", name: "Rtr. Ridhu Varsini B" },
-  { number: "19", designation: "Chair – Blood Donor Cell", name: "Rtr. Nishanth K" },
-  { number: "20", designation: "Club Advisor", name: "Rtr. Vishruti Premanand" }
+  { number: "01", designation: "Immediate Past President", name: "Rtr. Akilesh D", photo: "/photos/akilesh-d.jpg" },
+  { number: "02", designation: "President", name: "Rtr. Nirmal Kumar K", photo: "/photos/nirmal-kumar-k.jpg" },
+  { number: "03", designation: "Secretary – Administration", name: "Rtr. Akshara K", photo: "/photos/akshara-k.jpg" },
+  { number: "04", designation: "Secretary – Communication", name: "Rtr. Umang Jaiswal", photo: "/photos/umang-jaiswal-n.jpg" },
+  { number: "05", designation: "Vice President", name: "Rtr. Adithya R K", photo: "/photos/adithya-r-k.jpg" },
+  { number: "06", designation: "Treasurer", name: "Rtr. Kavin Kumar S", photo: "/photos/kavin-kumar-s.jpg" },
+  { number: "07", designation: "Chair – All Avenues", name: "Rtr. Yoga R", photo: "/photos/yoga-r.jpg" },
+  { number: "08", designation: "Director – Club Service", name: "Rtr. Harshita J", photo: "/photos/harshita-j.jpg" },
+  { number: "09", designation: "Rotaract Learning Facilitator", name: "Rtr. Rishi Ragavan", photo: "/photos/rishi-ragavan.jpg" },
+  { number: "10", designation: "Director – Community Service", name: "Rtr. Athish Pranav A S", photo: "/photos/athish-pranav-a-s.jpg" },
+  { number: "11", designation: "Young Leader Contact", name: "Rtr. Athish Pranav A S", photo: "/photos/athish-pranav-a-s.jpg" },
+  { number: "12", designation: "Director – Professional Service", name: "Rtr. Arthi K", photo: "/photos/arthi-k.jpg" },
+  { number: "13", designation: "Director – International Service", name: "Rtr. Akassh G", photo: "/photos/akassh-g.jpg" },
+  { number: "14", designation: "Chair – District Priority Projects", name: "Rtr. Sreevanth", photo: "/photos/sreevanth.jpg" },
+  { number: "15", designation: "Chair – Club Membership", name: "Rtr. Harish Siddharth N", photo: "/photos/harish-siddharth-n.jpg" },
+  { number: "16", designation: "Chair – The Rotary Foundation", name: "Rtr. Akassh G", photo: "/photos/akassh-g.jpg" },
+  { number: "17", designation: "Chair – Public Image", name: "Rtr. Vikashine C", photo: "/photos/vikashine-c.jpg" },
+  { number: "18", designation: "Editor in Chief", name: "Rtr. Ridhu Varsini B", photo: "/photos/ridhu-varsini-b.jpg" },
+  { number: "19", designation: "Chair – Blood Donor Cell", name: "Rtr. Nishanth K", photo: "/photos/nishanth-k.jpg" },
+  { number: "20", designation: "Club Advisor", name: "Rtr. Vishruti Premanand", photo: "/photos/vishruti-premanand.jpg" }
 ];
 
 /**

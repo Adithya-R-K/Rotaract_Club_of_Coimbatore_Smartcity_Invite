@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import Starfield from "./Starfield";
 import { event } from "@/config/event";
+import Image from "next/image";
 
 export default function OpeningExperience({
   onEnter = () => {}
@@ -12,29 +12,32 @@ export default function OpeningExperience({
 }) {
   const [open, setOpen] = useState(true);
   const [leaving, setLeaving] = useState(false);
-  const [skipAvailable, setSkipAvailable] = useState(false);
+  const [isTapped, setIsTapped] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    const t = setTimeout(() => setSkipAvailable(true), 900);
     return () => {
-      clearTimeout(t);
       document.body.style.overflow = "";
     };
   }, []);
 
-  function enter() {
+  function handleTap() {
     if (leaving) return;
+    setIsTapped(true);
     setLeaving(true);
+    
+    // Add subtle vibration if supported by device
+    if (typeof window !== "undefined" && window.navigator && window.navigator.vibrate) {
+      window.navigator.vibrate([30, 50, 30]);
+    }
+
     window.setTimeout(() => {
       setOpen(false);
       document.body.style.overflow = "";
       onEnter();
-    }, prefersReducedMotion ? 0 : 650);
+    }, prefersReducedMotion ? 0 : 1200); // Wait for the ripple & scale out animation
   }
-
-  const themeWords = event.theme.words.join(" · ");
 
   return (
     <AnimatePresence>
@@ -42,82 +45,110 @@ export default function OpeningExperience({
         <motion.div
           role="dialog"
           aria-label={`${event.eventName} — opening experience`}
-          onClick={enter}
-          className="fixed inset-0 z-50 flex cursor-pointer flex-col items-center justify-center bg-black/35 px-6 text-center"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-between bg-midnight-deep px-6 py-12 text-center overflow-hidden"
           initial={{ opacity: 1 }}
-          animate={{ opacity: leaving ? 0 : 1 }}
+          animate={{ opacity: leaving ? 0 : 1, filter: leaving ? "blur(20px)" : "blur(0px)", scale: leaving ? 1.1 : 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: prefersReducedMotion ? 0.15 : 0.6, ease: "easeInOut" }}
+          transition={{ duration: prefersReducedMotion ? 0.15 : 1.2, ease: [0.25, 1, 0.5, 1] }}
         >
-          <Starfield density={110} />
-
-          {/* Skip / continue — never a barrier to the content */}
-          <button
-            onClick={enter}
-            className={`absolute right-5 top-5 rounded-full border border-white/15 px-4 py-2 text-xs font-body tracking-wide text-parchment/70 transition hover:border-gold/60 hover:text-gold sm:right-8 sm:top-8 ${
-              skipAvailable ? "opacity-100" : "pointer-events-none opacity-0"
-            }`}
-            style={{ transitionProperty: "opacity, border-color, color" }}
+          {/* Cinematic Background */}
+          <motion.div 
+            className="absolute inset-0 z-0 opacity-40"
+            initial={{ scale: 1.2, opacity: 0 }}
+            animate={{ scale: 1, opacity: 0.4 }}
+            transition={{ duration: 3, ease: "easeOut" }}
           >
-            Skip intro
-          </button>
-
-          {/* The guiding star */}
-          <motion.div
-            className="relative mb-8 h-16 w-16 sm:h-20 sm:w-20"
-            initial={prefersReducedMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.4 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.1, delay: prefersReducedMotion ? 0 : 0.2, ease: "easeOut" }}
-          >
-            <span className="absolute inset-0 animate-drift rounded-full bg-gold/20 blur-2xl" />
-            <span className="absolute inset-[30%] rounded-full bg-gold-soft shadow-[0_0_35px_12px_rgba(217,178,106,0.55)]" />
+            <Image 
+              src="/dhruvam/hero-poster.webp" 
+              alt="Background" 
+              fill 
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-midnight-deep via-midnight/80 to-midnight-deep" />
           </motion.div>
 
-          <motion.p
-            className="mb-3 font-body text-xs uppercase tracking-ceremonial text-aurora/80"
-            initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: prefersReducedMotion ? 0 : 1.1 }}
-          >
-            A new Rotary year begins
-          </motion.p>
+          <div className="relative z-10 flex flex-col items-center mt-12">
+            <motion.p
+              className="mb-4 font-body text-xs uppercase tracking-ceremonial text-gold/80"
+              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: prefersReducedMotion ? 0 : 0.5 }}
+            >
+              A new Rotary year begins
+            </motion.p>
 
-          <motion.h1
-            className="font-display text-5xl text-parchment sm:text-6xl md:text-7xl"
-            initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: prefersReducedMotion ? 0 : 1.35 }}
-          >
-            {event.eventName}
-          </motion.h1>
+            <motion.h1
+              className="font-display text-5xl text-parchment sm:text-6xl"
+              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, delay: prefersReducedMotion ? 0 : 0.8 }}
+            >
+              {event.eventName}
+            </motion.h1>
 
-          <motion.p
-            className="mt-2 font-display text-xl italic text-aurora sm:text-2xl"
-            initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: prefersReducedMotion ? 0 : 1.7 }}
-          >
-            {event.subtitle}
-          </motion.p>
+            <motion.p
+              className="mt-4 font-display text-xl italic text-aurora"
+              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, delay: prefersReducedMotion ? 0 : 1.1 }}
+            >
+              {event.subtitle}
+            </motion.p>
+          </div>
 
-          <motion.p
-            className="mt-6 font-body text-sm tracking-ceremonial text-parchment/70 sm:text-base"
-            initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.9, delay: prefersReducedMotion ? 0 : 2.05 }}
-          >
-            {event.theme.name} — {themeWords}
-          </motion.p>
+          <div className="relative z-10 mb-12 flex flex-col items-center">
+            {/* The Tap Interaction */}
+            <motion.button
+              onClick={handleTap}
+              className="relative flex h-24 w-24 items-center justify-center rounded-full outline-none"
+              whileTap={{ scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 1.5, type: "spring", stiffness: 200 }}
+              aria-label="Tap to open invitation"
+            >
+              {/* Outer pulsing rings */}
+              <motion.div
+                className="absolute inset-0 rounded-full border-2 border-gold/30"
+                animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.div
+                className="absolute inset-[-10px] rounded-full border border-gold/10"
+                animate={{ scale: [1, 1.8, 1], opacity: [0.3, 0, 0.3] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              />
+              
+              {/* Ripple effect on tap */}
+              <AnimatePresence>
+                {isTapped && (
+                  <motion.div
+                    className="absolute inset-0 rounded-full bg-gold"
+                    initial={{ scale: 1, opacity: 0.8 }}
+                    animate={{ scale: 10, opacity: 0 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                  />
+                )}
+              </AnimatePresence>
 
-          <motion.button
-            onClick={enter}
-            className="mt-10 rounded-full bg-gold px-8 py-3 font-body text-sm font-medium tracking-wide text-midnight transition hover:bg-gold-soft active:scale-[0.98] sm:mt-12"
-            initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: prefersReducedMotion ? 0.1 : 2.4 }}
-          >
-            Enter the Experience
-          </motion.button>
+              {/* Core Button */}
+              <div className="z-10 flex h-16 w-16 items-center justify-center rounded-full bg-gold/10 backdrop-blur-md shadow-[0_0_30px_rgba(217,178,106,0.3)] border border-gold/40 transition-colors">
+                <span className="font-body text-xs font-semibold uppercase tracking-widest text-gold">
+                  Tap
+                </span>
+              </div>
+            </motion.button>
+            
+            <motion.p
+              className="mt-8 font-body text-xs uppercase tracking-ceremonial text-parchment/50"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 2 }}
+            >
+              To Open
+            </motion.p>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

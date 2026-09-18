@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Section from "./Section";
 import Starfield from "./Starfield";
 import { club, event } from "@/config/event";
@@ -7,6 +8,13 @@ export default function Closing() {
     <Section id="closing" className="overflow-hidden text-center">
       <div className="relative">
         <Starfield density={40} className="hidden sm:block" />
+        <Image
+          src="/assets/dhruvam/characters/penguin-back.jpg"
+          alt="Dhruva looking up at a single guiding star"
+          width={896}
+          height={1200}
+          className="mx-auto mb-6 w-32 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.4)] sm:w-40"
+        />
         <p className="font-body text-sm tracking-ceremonial text-aurora/80">
           Until {event.dateDisplay}
         </p>
