@@ -73,3 +73,12 @@ button:focus-visible,
   border-radius: 9999px;
   background: #f4f1e8;
 }
+
+/* Utilities */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

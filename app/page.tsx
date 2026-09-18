@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import OpeningExperience from "@/components/OpeningExperience";
+import MobileNav from "@/components/MobileNav";
 import Hero from "@/components/Hero";
 import AboutDhruvam from "@/components/AboutDhruvam";
 import ThemeLuma from "@/components/ThemeLuma";
@@ -38,18 +39,21 @@ export default function Home() {
         aria-hidden={!entered}
         className={entered ? "" : "hidden"}
       >
-        <main id="main" className="relative">
+        <main id="main" className="relative pb-24">
           <Hero />
           <AboutDhruvam />
           <ThemeLuma />
-          <CeremonyDetails />
-          <Dignitaries />
           <OfficeBearers />
+          <Dignitaries />
           <Schedule />
+          <CeremonyDetails />
           <Venue />
           <Contact />
           <Closing />
         </main>
+        
+        <MobileNav show={entered} />
+        
         <Footer />
       </div>
     </>
