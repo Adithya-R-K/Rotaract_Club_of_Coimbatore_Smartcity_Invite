@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: #060b14;
+  color: #f4f1e8;
+  background-image:
+    linear-gradient(rgba(6, 11, 20, 0.74), rgba(6, 11, 20, 0.88)),
+    var(--aurora-photo);
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 640px) {
+  body {
+    /* iOS Safari handles fixed backgrounds poorly; scroll on mobile instead. */
+    background-attachment: scroll;
+  }
+}
+
+::selection {
+  background: #4fd8c4;
+  color: #060b14;
+}
+
+/* Visible focus states everywhere — never suppressed */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #d9b26a;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* The guiding star is now expressed through the real aurora photo
+   background rather than a literal center line. */
+
+.font-display {
+  letter-spacing: 0.01em;
+}
+
+.tracking-ceremonial {
+  letter-spacing: 0.14em;
+}
+
+/* Starfield canvas layer */
+.starfield-dot {
+  position: absolute;
+  border-radius: 9999px;
+  background: #f4f1e8;
+}
